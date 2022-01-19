@@ -9,19 +9,29 @@ p {
   padding: 0;
 }
 
+html {
+  height: 100%;
+}
+
 body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-family: "JetBrains Mono", sans-serif;
-  font-size: $size;
+  justify-content: flex-start;
+  font-family: Constantia, sans-serif;
+  font-size: $text;
   height: 100%;
-  background: url("img/6302897.jpg") no-repeat center;
+  background: url("img/vintage.jpg") no-repeat center/cover;
   margin: 0;
   min-width: 320px;
+  line-height: 1;
 }
 
 main {
   width: 100%;
+}
+
+.title {
+  text-align: center;
+  font-size: $title;
 }

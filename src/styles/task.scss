@@ -1,11 +1,74 @@
-.tasks__container {
-  margin-top: 50px;
-  width: 400px;
-  padding: 20px;
-  background: wheat;
+@import "variables";
+
+.tasks {
+  width: 100%;
+  margin: 40px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+.task__bg {
+  width: 400px;
+  height: 500px;
+  padding: 20px;
+  border-radius: 10px;
+  background: white;
+}
+
+.task__decor {
+  border: 2px dashed $primary-color;
+  padding: 10px;
+  height: 460px;
+}
+
+.tasks__container {
+  overflow-y: auto;
+  margin: 0;
+  height: calc(100% - 25px);
+}
+
+.tasks__container::-webkit-scrollbar {
+  width: 7px;
+}
+
+.tasks__container::-webkit-scrollbar-track {
+  background-color: transparent;
+  border-radius: 5px;
+}
+
+.tasks__container::-webkit-scrollbar-button {
+  opacity: 0;
+  height: 5px;
+}
+
+.tasks__container::-webkit-scrollbar-thumb {
+  background-color: $primary-color;
+  border-radius: 5px;
+}
+
+.task__item-wrap {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  cursor: pointer;
+  margin-left: 5px;
+  padding-bottom: 10px;
+}
+
 
 .checked {
   text-decoration: line-through;
   color: green;
 }
+
+.task__btn {
+  padding: 0;
+  display: flex;
+  align-items: center;
+  margin: 5px 10px 0 0;
+  color: $primary-color;
+  background: transparent;
+  cursor: pointer;
+}
+

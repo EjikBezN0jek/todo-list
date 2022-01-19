@@ -1,3 +1,13 @@
+@import "variables";
+
 .btn {
   border: none;
+  font-size: $text-min;
+
+  &:focus{
+    outline: none;
+  }
 }
+
+
+
