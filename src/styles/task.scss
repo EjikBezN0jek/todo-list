@@ -2,30 +2,23 @@
 
 .tasks {
   width: 100%;
-  margin: 40px 0 0;
+  margin: 15px 0 0;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .task__bg {
-  width: 400px;
+  width: 500px;
   height: 500px;
   padding: 20px;
   border-radius: 10px;
   background: white;
 }
 
-.task__decor {
-  border: 2px dashed $primary-color;
-  padding: 10px;
-  height: 460px;
-}
-
 .tasks__container {
   overflow-y: auto;
-  margin: 0;
-  height: calc(100% - 25px);
+  height: calc(100% - 5px);
 }
 
 .tasks__container::-webkit-scrollbar {
@@ -53,13 +46,21 @@
   justify-content: flex-start;
   cursor: pointer;
   margin-left: 5px;
-  padding-bottom: 10px;
+  padding: 5px 0;
+}
+
+.task__item {
+  margin-right: 10px;
+  width: 100%;
 }
 
 
 .checked {
   text-decoration: line-through;
-  color: green;
+}
+
+[contenteditable]:focus {
+  outline: 2px solid $primary-color;
 }
 
 .task__btn {
@@ -70,5 +71,24 @@
   color: $primary-color;
   background: transparent;
   cursor: pointer;
+
+  &--remove{
+    font-size: 16px;
+  }
+
+  &--rewrite {
+    font-size: 12px;
+  }
+
+  &--important {
+    font-size: $text-min;
+  }
+
+  &--check {
+  }
+}
+
+.important {
+  color: $primary-color;
 }
 

@@ -1,0 +1,33 @@
+@import "variables";
+
+.filters {
+  display: flex;
+}
+
+.filters__item {
+  font-size: $text-min;
+  background: $secondary-color;
+  padding: 10px;
+  cursor: pointer;
+
+  &:not(:last-child) {
+    border-right: 2px solid $primary-color;
+  }
+
+
+  &:first-child {
+    border-radius: 5px 0 0 5px;
+  }
+
+  &:last-child {
+    border-radius:  0 5px 5px 0 ;
+  }
+
+  &:hover {
+    background: $primary-color;
+  }
+}
+
+.active {
+  background: $primary-color;
+}

@@ -1,15 +1,16 @@
 @import "variables";
 
-.form {
-  display: flex;
+.search__form {
+  width: 50%;
+  align-self: flex-start;
 }
 
-.add-task {
-  display: block;
+.search {
   position: relative;
+  display: block;
 
   &:before {
-    content: "\f304";
+    content: "\f3ee";
     width: 20px;
     height: 20px;
     position: absolute;
@@ -23,41 +24,23 @@
     font-variant: normal;
     text-rendering: auto;
     line-height: 1;
-    font-family: "Font Awesome 5 Free";
+    font-family: "Font Awesome 5 Brands";
     color: $primary-color;
-    font-weight: 900;
+    font-weight: bold;
   }
 }
 
-
-.form__input {
-  width:(500px - 85px);
-  border-radius: 5px 0 0 5px ;
-  padding: 10px 45px;
+.search__input {
+  width: 100%;
+  border-radius: 5px;
+  background: white;
   border: none;
+  padding: 8px 40px;
   font-family: inherit;
-  font-size: $text;
-
-
-  &::placeholder{
-    font-size: $text-min;
-  }
+  font-size: $text-min;
 
   &:focus {
     outline: none;
-  }
-
-}
-
-.form__btn {
-  font-family: inherit;
-  border-radius: 0 5px 5px 0 ;
-  padding: 10px 30px;
-  background: $secondary-color;
-  cursor: pointer;
-
-  &:hover {
-    background: $primary-color;
   }
 }
 
