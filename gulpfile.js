@@ -4,7 +4,7 @@ const concat = require('gulp-concat');
 const sass = require('gulp-sass')(require('sass'));
 const plumber = require("gulp-plumber");
 const del = require("del");
-
+const ghpages = require('gh-pages');
 
 function copyTask() {
   return gulp.src(['src/*.html', "src/*.js"])
@@ -37,10 +37,15 @@ function serveTask() {
   gulp.watch('src/img/', copyImgTask).on('change', browserSync.reload);
 }
 
+function publishTask() {
+  ghpages.publish('build', {branch: 'gh-pages', repo: 'https://github.com/EjikBezN0jek/todo-list.git'}, function(err) {});
+}
+
 exports.style = styleTask;
 exports.copy = copyTask;
 exports.clean = cleanTask;
 exports.serve = serveTask;
+exports.publish = publishTask;
 exports.build = gulp.series(
   cleanTask,
   copyTask,

@@ -1,10 +1,20 @@
 @import "variables";
+@import "mixins";
 
 .filters {
   display: flex;
+  width: 100%;
+
+  @include s {
+    margin-left: 10px;
+    justify-content: space-between;
+    width: 50%;
+  }
 }
 
 .filters__item {
+  width: 100%;
+  text-align: center;
   font-size: $text-min;
   background: $secondary-color;
   padding: 10px;

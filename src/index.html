@@ -21,34 +21,23 @@
             <button type="submit" class="form__btn btn">Add</button>
         </form>
         <div class="header__wrap">
-            <div class="search__form form">
-                <label class="search">
-                    <input type="text" id="search" class="search__input" placeholder="Search" autofocus autocomplete="off">
-                </label>
-            </div>
+            <label class="search">
+                <input type="text" id="search" class="search__input" placeholder="Search" autofocus autocomplete="off">
+                <button type="button" class="search__remove btn"><i class="fas fa-times"></i></button>
+            </label>
 
             <div class="header__filters filters">
-                <div class="filters__item all-tasks active">
-                    <p>All</p>
-                </div>
-                <div class="filters__item active-tasks">
-                    <p>Active</p>
-                </div>
-                <div class="filters__item important-tasks">
-                    <p>Important</p>
-                </div>
-                <div class="filters__item done-tasks">
-                    <p>Done</p>
-                </div>
+                <div class="filters__item active" data-status="all">All</div>
+                <div class="filters__item" data-status="active">Active</div>
+                <div class="filters__item" data-status="important">Important</div>
+                <div class="filters__item" data-status="done">Done</div>
             </div>
         </div>
 
     </div>
 
     <div class="tasks">
-        <div class="task__bg">
-            <div class="tasks__container"></div>
-        </div>
+        <div class="tasks__container"></div>
     </div>
 
     <script src="script.js"></script>

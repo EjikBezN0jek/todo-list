@@ -1,13 +1,10 @@
 @import "variables";
-
-.search__form {
-  width: 50%;
-  align-self: flex-start;
-}
+@import "mixins";
 
 .search {
   position: relative;
   display: block;
+  width: 100%;
 
   &:before {
     content: "\f3ee";
@@ -28,6 +25,11 @@
     color: $primary-color;
     font-weight: bold;
   }
+
+  @include s {
+    width: 50%;
+  }
+
 }
 
 .search__input {
@@ -44,4 +46,18 @@
   }
 }
 
+.search__remove {
+  display: none;
+  position: absolute;
+  bottom: 50%;
+  transform: translateY(50%);
+  right: 0;
+  padding: 0;
+  align-items: center;
+  margin: 5px 10px 0 0;
+  color: $primary-color;
+  background: transparent;
+  cursor: pointer;
+  font-size: 16px;
+}
 

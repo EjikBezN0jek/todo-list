@@ -1,8 +1,9 @@
 const form = document.querySelector('.form');
 const formInput = document.querySelector('.form__input');
 const tasksContainer = document.querySelector('.tasks__container');
-const search = document.querySelector('.search__form');
+const searchRemoveBtn = document.querySelector('.search__remove');
 const searchInput = document.querySelector('.search__input');
+const filterBtns = document.querySelectorAll('.filters__item');
 
 let list = JSON.parse(localStorage.getItem('list')) || [];
 let currentId = list.length ? list[list.length - 1]?.id + 1 : 1;
@@ -16,7 +17,7 @@ function saveTodos() {
 function showAllTasks(list) {
   tasksContainer.innerHTML = '';
   if (list.length) {
-    list.forEach((task) => showTask(task.id, task.todo))
+    list.forEach((task) => showTask(task))
   } else if (searchInput.value) {
     tasksContainer.innerHTML = '<p class="text-center">Not found tasks!</p>';
   } else {
@@ -41,24 +42,23 @@ function addTask(e) {
 
   list.push(task);
   formInput.value = '';
-  showTask(task.id, task.todo)
+  showTask(task)
   if (list.length === 1) showAllTasks(list)
   saveTodos();
 }
 
-function showTask(id, todo) {
+function showTask(task) {
+  const {id} = task;
   let wrapper = document.createElement('div');
   wrapper.classList.add('task__item-wrap');
 
-  wrapper.append(createCheckBtn(id))
-
-  wrapper.append(createImportantBtn(id))
-
-  wrapper.append(createTaskItem(id, todo))
-
-  wrapper.append(createRewriteBtn(id))
-
-  wrapper.append(createRemoveBtn(id))
+  wrapper.append(
+    createCheckBtn(id),
+    createImportantBtn(id),
+    createTaskItem(task),
+    createRewriteBtn(id),
+    createRemoveBtn(id)
+  )
 
   tasksContainer.append(wrapper)
 }
@@ -95,12 +95,14 @@ function createCheckBtn(id) {
   return checkBtn;
 }
 
-function createTaskItem(id, todo) {
+function createTaskItem(task) {
   let taskItem = document.createElement('div');
   taskItem.classList.add('task__item');
-  taskItem.innerText = todo;
-  taskItem.setAttribute('data-id', id)
-  taskItem.addEventListener('focusout',  () => saveTask(id))
+  if (task.checked) taskItem.classList.add('checked');
+  if (task.important) taskItem.classList.add('important');
+  taskItem.innerText = task.todo;
+  taskItem.setAttribute('data-id', task.id)
+  taskItem.addEventListener('focusout',  () => saveTask(task.id))
   taskItem.addEventListener('keypress', (e) => {
     if (e.code === 'Enter' && !e.shiftKey) {
       e.preventDefault();
@@ -111,8 +113,12 @@ function createTaskItem(id, todo) {
 }
 
 function importantTask(id) {
+  const todo = list.find(item => item.id === id);
+  todo.important = !todo.important;
+
   const task = getTask(id)
   task.classList.toggle('important');
+  saveTodos();
 }
 
 function rewriteTask(id) {
@@ -134,11 +140,41 @@ function checkTask(id) {
 
   const task = getTask(id);
   task.classList.toggle('checked');
+  saveTodos();
 }
 
 function searchTask(value) {
+  if(searchInput.value !== ""){
+    searchRemoveBtn.style.display = 'block';
+  }
   let searchedTasks = list.filter(item => item.todo.includes(value));
   showAllTasks(searchedTasks);
+}
+
+function removeSearch() {
+  searchInput.value = "";
+  searchRemoveBtn.style.display = 'none';
+  showAllTasks(list);
+}
+
+function filterTasks(btn) {
+  let filteredTasks = [];
+  filterBtns.forEach(btn => btn.classList.remove("active"));
+  btn.classList.add('active');
+  switch (btn.dataset.status) {
+    case "active":
+      filteredTasks = list.filter(item => !item.checked);
+      break;
+    case "important":
+      filteredTasks = list.filter(item => item.important);
+      break;
+    case "done":
+      filteredTasks = list.filter(item => item.checked);
+      break;
+    default:
+      filteredTasks = list
+  }
+  showAllTasks(filteredTasks)
 }
 
 function removeTask(id) {
@@ -150,6 +186,6 @@ function removeTask(id) {
 }
 
 form.addEventListener('submit', addTask);
-
+searchRemoveBtn.addEventListener('click', removeSearch);
 searchInput.addEventListener('input',(e) => searchTask(e.target.value))
-
+filterBtns.forEach(btn => btn.addEventListener("click", (e) => filterTasks(e.target)))

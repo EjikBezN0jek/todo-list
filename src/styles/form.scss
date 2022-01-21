@@ -5,6 +5,7 @@
 }
 
 .add-task {
+  flex-grow: 1;
   display: block;
   position: relative;
 
@@ -31,7 +32,8 @@
 
 
 .form__input {
-  width:(500px - 85px);
+  width: 100%;
+  //width: (500px - 85px);
   border-radius: 5px 0 0 5px ;
   padding: 10px 45px;
   border: none;

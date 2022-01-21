@@ -1,20 +1,33 @@
 @import "variables";
 @import "form";
 @import "search";
+@import "mixins";
 
 .header {
-  display: flex;
-  flex-direction: column;
+  width: 100%;
+  max-width: 500px;
 }
 
 .header__wrap {
-  margin-top: 15px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  margin-top: 10px;
+
+  @include s {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
 
 .header__title {
   margin: 15px 0 15px;
 }
 
+
+.header__filters {
+  margin-top: 10px;
+
+  @include s {
+    margin-top: 0;
+  }
+}
