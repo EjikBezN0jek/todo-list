@@ -37,8 +37,11 @@ function serveTask() {
   gulp.watch('src/img/', copyImgTask).on('change', browserSync.reload);
 }
 
-function publishTask() {
-  ghpages.publish('build', {branch: 'gh-pages', repo: 'https://github.com/EjikBezN0jek/todo-list.git'}, function(err) {});
+async function publishTask() {
+  await ghpages.publish(
+    'build',
+    {branch: 'gh-pages', repo: 'https://github.com/EjikBezN0jek/todo-list.git'},
+    function(err) {});
 }
 
 exports.style = styleTask;
