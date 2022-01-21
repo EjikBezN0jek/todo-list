@@ -6,11 +6,12 @@
   max-width: 500px;
   height: calc(100% - 194px - 30px);
   max-height: 500px;
-  padding: 20px;
+  padding: 10px;
   border-radius: 10px;
   background: white;
 
   @include s{
+    padding: 20px;
     height: calc(100% - 156px - 30px);
   }
 }
