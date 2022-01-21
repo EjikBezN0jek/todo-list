@@ -147,7 +147,7 @@ function searchTask(value) {
   if(searchInput.value !== ""){
     searchRemoveBtn.style.display = 'block';
   }
-  let searchedTasks = list.filter(item => item.todo.includes(value));
+  let searchedTasks = list.filter(item => item.todo.toLowerCase().includes(value.toLowerCase()));
   showAllTasks(searchedTasks);
 }
 
